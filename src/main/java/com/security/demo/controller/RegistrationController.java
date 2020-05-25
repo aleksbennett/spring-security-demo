@@ -1,5 +1,6 @@
 package com.security.demo.controller;
 
+import com.security.demo.dto.UserRegistrationDto;
 import com.security.demo.model.User;
 import com.security.demo.service.UserService;
 
@@ -19,35 +20,31 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-    /*
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto() {
         return new UserRegistrationDto();
     }
-    */
 
     @GetMapping
     public String showRegistrationForm(Model model) {
         return "registration_simple";
     }
 
-    /*
     @PostMapping
     public String registerUserAccount(
             @ModelAttribute("user") @Validated UserRegistrationDto userDto, 
-                                      BindingResult result){
+            BindingResult result){
 
         User existing = userService.findByEmail(userDto.getEmail());
-        if (existing != null){
+        if( existing != null ){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
 
-        if (result.hasErrors()){
+        if( result.hasErrors() ){
             return "registration";
         }
 
         userService.save(userDto);
         return "redirect:/login?registered";
     }
-    */
 }
