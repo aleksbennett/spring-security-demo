@@ -1,0 +1,55 @@
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type">
+    <meta content="text/html">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Aleks Bennett">
+
+    <title>Spring Security Demo</title>
+
+    <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.3.1/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+
+<head th:fragment="head_login">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type">
+    <meta content="text/html">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Aleks Bennett">
+
+    <title>Spring Security Demo</title>
+
+    <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.3.1/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/build/css/signin.css" />
+</head>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Spring security demo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" sec:authorize="!isFullyAuthenticated()">
+                <a class="nav-link" th:href="@{/login}">Login <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" sec:authorize="!isFullyAuthenticated()">
+                <a class="nav-link" th:href="@{/register}">Register</a>
+            </li>
+            <li class="nav-item"  sec:authorize="isFullyAuthenticated()">
+                <a class="nav-link" th:href="@{/users}">Users</a>
+            </li>   
+            <li class="nav-item"  sec:authorize="isFullyAuthenticated()">
+                <a class="nav-link" th:href="@{/logout}">Log out</a>
+            </li>         
+        </ul>
+    </div>
+</nav>

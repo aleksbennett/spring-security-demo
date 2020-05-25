@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/template.html :: head_login"></head>
+
+<body class="text-center">
+    <nav th:replace="fragments/template.html :: navbar"></nav>
+
+    <form class="form-signin" th:action="@{/login}" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+
+        <div th:if="${param.error}" class="center_elements error data_input_holder clearfix">
+            <p>No user accounts were found with those details.</p>
+        </div>
+        <div th:if="${param.logout}" class="center_elements error data_input_holder clearfix">
+            <p>You have been logged out.</p>
+        </div>
+
+
+        <label for="username" class="sr-only">Email address</label>
+        <input type="email" id="username" name="username" class="form-control" placeholder="Email address" required autofocus>
+        
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+  </body>
+</html>
