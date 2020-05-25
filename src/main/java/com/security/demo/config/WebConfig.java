@@ -18,12 +18,13 @@ public class WebConfig implements WebMvcConfigurer {
 
     /*
     Allow Thymeleaf resources like css and js to be accessible from /resources/static/build/ 
-    which is now mapped to /build/ for it's url.
+    which is now mapped to /build/ for it's url. 
+    Allow access to webjars for jquery and bootstrap
     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-            .addResourceHandler("/build/**")
-            .addResourceLocations("classpath:/static/build/");
+            .addResourceHandler("/build/**", "/webjars/**")
+            .addResourceLocations("classpath:/static/build/", "/webjars/");
     }
 }

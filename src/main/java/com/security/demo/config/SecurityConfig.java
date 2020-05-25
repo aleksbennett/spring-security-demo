@@ -29,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/login*", 
                 "/about", 
                 "/greeting",
-                "/h2-console/**"
+                "/h2-console/**",
+                "/webjars/**"
               ).permitAll() //allows access to all build resources
             .anyRequest().authenticated()
             .and()
