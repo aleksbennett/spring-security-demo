@@ -31,8 +31,8 @@ public class UserLoader implements CommandLineRunner {
             .confirmEmail("alekstest1@test.com")
             .firstName("Aleks")
             .lastName("Test")
-            .password("mypass")
-            .confirmPassword("mypass")
+            .password("testing123")
+            .confirmPassword("testing123")
             .build()
         );
 
@@ -41,8 +41,8 @@ public class UserLoader implements CommandLineRunner {
             .confirmEmail("alekstest2@test.com")
             .firstName("Aleks2")
             .lastName("Test2")
-            .password("mypass2")
-            .confirmPassword("mypass2")
+            .password("testing123")
+            .confirmPassword("testing123")
             .build()
         );
     }

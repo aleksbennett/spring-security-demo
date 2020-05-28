@@ -11,9 +11,10 @@ public class WebRootController {
     @Value("${spring.application.name}")
     String appName;
     
-    @GetMapping("/greeting")
-    public String homePage(Model model) {
+    @GetMapping("/users")
+    public String users(Model model) {
         model.addAttribute("appName", appName);
+        
         return "home";
     }
     

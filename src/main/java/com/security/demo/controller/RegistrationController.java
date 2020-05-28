@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/registration")
+@RequestMapping("/register")
 public class RegistrationController {
     @Autowired
     private UserService userService;
@@ -27,7 +27,7 @@ public class RegistrationController {
 
     @GetMapping
     public String showRegistrationForm(Model model) {
-        return "registration_simple";
+        return "register";
     }
 
     @PostMapping
@@ -35,14 +35,20 @@ public class RegistrationController {
             @ModelAttribute("user") @Validated UserRegistrationDto userDto, 
             BindingResult result){
 
+        System.out.println("Attempting registration");
+        
         User existing = userService.findByEmail(userDto.getEmail());
         if( existing != null ){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
 
+        System.out.println("user found: " + existing == null);
+
         if( result.hasErrors() ){
             return "registration";
         }
+
+        System.out.println("Saving user");
 
         userService.save(userDto);
         return "redirect:/login?registered";
