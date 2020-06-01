@@ -37,38 +37,16 @@ public class RegistrationController {
     public String registerUserAccount(Model model, @ModelAttribute("user") @Valid UserRegistrationDto userDto, 
             BindingResult result) {
 
-        System.out.println("Result errors: " + result.getErrorCount());
+        //System.out.println("Result errors: " + result.getErrorCount());
         
         if( !result.hasErrors() ){
             try {
-                //User registered = userService.registerNewUser(userDto);
                 userService.registerNewUser(userDto);
                 return "redirect:/login?registered";
             } catch (UserAlreadyExistsException e) {
-                //model.addAttribute("error", "An account for that username/email already exists.");
-                //model.addAttribute("errors", result.getAllErrors());
             }
-
-            //java.util.List<org.springframework.validation.ObjectError> testList = result.getAllErrors();
-            //testList.get(1).
         }
 
         return "register";
-
-
-        /*
-        User existing = userService.findByEmail(userDto.getEmail());
-        if( existing != null ){
-            result.rejectValue("email", null, "There is already an account registered with that email");
-        }
-
-        if( result.hasErrors() ){
-            return "registration";
-        }
-
-        userService.save(userDto);
-        
-        return "redirect:/login?registered";
-        */
     }
 }
