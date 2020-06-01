@@ -1,14 +1,17 @@
 package com.security.demo.controller;
 
+import javax.validation.Valid;
+
 import com.security.demo.dto.UserRegistrationDto;
 import com.security.demo.model.User;
 import com.security.demo.service.UserService;
+import com.security.demo.validation.UserAlreadyExistsException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,26 +34,41 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String registerUserAccount(
-            @ModelAttribute("user") @Validated UserRegistrationDto userDto, 
-            BindingResult result){
+    public String registerUserAccount(Model model, @ModelAttribute("user") @Valid UserRegistrationDto userDto, 
+            BindingResult result) {
 
-        System.out.println("Attempting registration");
+        System.out.println("Result errors: " + result.getErrorCount());
         
+        if( !result.hasErrors() ){
+            try {
+                //User registered = userService.registerNewUser(userDto);
+                userService.registerNewUser(userDto);
+                return "redirect:/login?registered";
+            } catch (UserAlreadyExistsException e) {
+                //model.addAttribute("error", "An account for that username/email already exists.");
+                //model.addAttribute("errors", result.getAllErrors());
+            }
+
+            //java.util.List<org.springframework.validation.ObjectError> testList = result.getAllErrors();
+            //testList.get(1).
+        }
+
+        return "register";
+
+
+        /*
         User existing = userService.findByEmail(userDto.getEmail());
         if( existing != null ){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
 
-        System.out.println("user found: " + existing == null);
-
         if( result.hasErrors() ){
             return "registration";
         }
 
-        System.out.println("Saving user");
-
         userService.save(userDto);
+        
         return "redirect:/login?registered";
+        */
     }
 }

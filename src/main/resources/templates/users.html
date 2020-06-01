@@ -11,7 +11,27 @@
         </div>
 
         <div class="justify-content-md-center">
-            
+            <table>
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Username </th>
+                        <th> First name </th>
+                        <th> Last name </th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${users.empty}">
+                        <td colspan="3"> No Users </td>
+                    </tr>
+                    <tr th:each="user : ${users}">
+                        <td><span th:text="${user.id}"> id </span></td>
+                        <td><span th:text="${user.email}"> email </span></td>
+                        <td><span th:text="${user.firstName}"> firstname </span></td>
+                        <td><span th:text="${user.lastName}"> lastname </span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

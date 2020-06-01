@@ -1,8 +1,12 @@
 package com.security.demo.dto;
 
 import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import com.security.demo.validation.FieldMatch;
+import com.security.demo.validation.ValidEmail;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,27 +17,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@FieldMatch.List({
+    @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
+    @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
+})
 public class UserRegistrationDto {
-    @NotEmpty
+    @NotBlank
     private String firstName;
 
-    @NotEmpty
+    @NotBlank
     private String lastName;
 
-    @NotEmpty
+    @NotBlank
     private String password;
-
-    @NotEmpty
     private String confirmPassword;
 
-    @Email
-    @NotEmpty
+    @ValidEmail
+    @NotBlank
     private String email;
-
-    @Email
-    @NotEmpty
     private String confirmEmail;
 
-    @AssertTrue
+    //@AssertTrue
     private Boolean terms;
 }
