@@ -36,4 +36,15 @@ public class UserRegistrationDto {
 
     //@AssertTrue
     private Boolean terms;
+
+    private String title;
+    private String houseName;
+    private String street;
+    private String town;
+    private String county;
+    private String country;
+    private String postcode;
+
+    private String companyRole;
+    private String companyName;
 }

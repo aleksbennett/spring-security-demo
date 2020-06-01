@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="fragments/template.html :: head"></head>
+<head th:replace="fragments/template.html :: head_default"></head>
 
 <body>
     <nav th:replace="fragments/template.html :: navbar"></nav>
-
-    <div class="container col-md-6">
+    
+    <div class="container main_container col-md-6">
         <div class="py-5 text-center">
             <h2>Register</h2>
         </div>
 
-        <div class="justify-content-md-center">
+        <div class="">
             <form class="needs-validation" th:object="${user}" th:action="@{/register}" method="post" novalidate>
                 <div th:if="${#fields.hasGlobalErrors()}" class="row">
                     <p class="error-message"
@@ -94,7 +94,19 @@
                 <hr class="mb-4">
 
                 <div class="row">
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-2 mb-2">
+                        <label for="title">Title</label>
+                        <input type="text" 
+                                th:field="*{title}"
+                                class="form-control" 
+                                th:classappend="${#fields.hasErrors('title') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('title')}" 
+                                th:errors="*{title}"></div>
+                    </div>
+                    <div class="col-md-5 mb-2">
                         <label for="firstName">First name</label>
                         <input type="text" 
                                 th:field="*{firstName}"
@@ -106,7 +118,7 @@
                                 th:if="${#fields.hasErrors('firstName')}" 
                                 th:errors="*{firstName}"></div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-5 mb-2">
                         <label for="lastName">Last name</label>
                         <input type="text" 
                                 th:field="*{lastName}"
@@ -119,7 +131,119 @@
                                 th:errors="*{lastName}"></div>
                     </div>
                 </div>
+
+                <hr class="mb-4">
+
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="postcode">Postcode</label>
+                        <input type="text" 
+                                th:field="*{postcode}"
+                                class="form-control" 
+                                th:classappend="${#fields.hasErrors('postcode') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('postcode')}" 
+                                th:errors="*{postcode}"></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="houseName">House name/number</label>
+                        <input type="text" 
+                                th:field="*{houseName}"
+                                class="form-control" 
+                                th:classappend="${#fields.hasErrors('houseName') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('houseName')}" 
+                                th:errors="*{houseName}"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="street">Street</label>
+                        <input type="text" 
+                                th:field="*{street}"
+                                class="form-control" 
+                                th:classappend="${#fields.hasErrors('street') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('street')}" 
+                                th:errors="*{street}"></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="town">Town</label>
+                        <input type="text" 
+                                th:field="*{town}"
+                                class="form-control" 
+                                th:classappend="${#fields.hasErrors('town') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('town')}" 
+                                th:errors="*{town}"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="county">County/State</label>
+                        <input type="text" 
+                                th:field="*{county}"
+                                class="form-control" 
+                                th:classappend="${#fields.hasErrors('county') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('county')}" 
+                                th:errors="*{county}"></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="country">Country</label>
+                        <input type="text" 
+                                th:field="*{country}"
+                                class="form-control" 
+                                th:classappend="${#fields.hasErrors('country') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('country')}" 
+                                th:errors="*{country}"></div>
+                    </div>
+                </div>
                 
+                <hr class="mb-4">
+
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="companyRole">Company Role</label>
+                        <input type="text" 
+                                th:field="*{companyRole}"
+                                class="form-control" 
+                                th:classappend="${#fields.hasErrors('companyRole') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('companyRole')}" 
+                                th:errors="*{companyRole}"></div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="companyName">Company Name</label>
+                        <input type="text" 
+                                th:field="*{companyName}"
+                                class="form-control" 
+                                th:classappend="${#fields.hasErrors('companyName') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('companyName')}" 
+                                th:errors="*{companyName}"></div>
+                    </div>
+                </div>
+
                 <hr class="mb-4">
 
                 <div class="text-center">

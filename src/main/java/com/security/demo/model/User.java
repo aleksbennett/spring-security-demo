@@ -58,6 +58,7 @@ public class User {
     private String country;
     private String postcode;
     private String companyName;
+    private String companyRole;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
