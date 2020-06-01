@@ -29,10 +29,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    private final UserMapper userMapper;
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
-    private final UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -66,6 +66,7 @@ public class UserServiceImpl implements UserService {
         user.setDeletedFlag(0);
         user.setDisabledFlag(0);
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        user.setPassword(passwordEncoder.encode(registration.getPassword()));     
 
         return save(user);
     }
