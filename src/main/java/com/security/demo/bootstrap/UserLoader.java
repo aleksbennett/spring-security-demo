@@ -26,7 +26,7 @@ public class UserLoader implements CommandLineRunner {
     }
 
     public void loadUserObjects(){
-        userService.save(UserRegistrationDto.builder()
+        userService.registerNewUser(UserRegistrationDto.builder()
             .email("alekstest1@test.com")
             .confirmEmail("alekstest1@test.com")
             .firstName("Aleks")
@@ -36,7 +36,7 @@ public class UserLoader implements CommandLineRunner {
             .build()
         );
 
-        userService.save(UserRegistrationDto.builder()
+        userService.registerNewUser(UserRegistrationDto.builder()
             .email("alekstest2@test.com")
             .confirmEmail("alekstest2@test.com")
             .firstName("Aleks2")

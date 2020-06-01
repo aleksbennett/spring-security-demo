@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.security.demo.dto.UserRegistrationDto;
+import com.security.demo.mappers.UserMapper;
 import com.security.demo.model.Role;
 import com.security.demo.model.User;
 import com.security.demo.repository.UserRepository;
@@ -19,6 +20,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -27,6 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    private final UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -55,18 +61,16 @@ public class UserServiceImpl implements UserService {
                 +  registration.getEmail());
         }
 
-        return this.save(registration);
+        User user = userMapper.userRegistrationDtoToUser(registration);
+
+        user.setDeletedFlag(0);
+        user.setDisabledFlag(0);
+        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+
+        return save(user);
     }
 
-    public User save(UserRegistrationDto registration){
-        User user = new User();
-
-        user.setFirstName(registration.getFirstName());
-        user.setLastName(registration.getLastName());
-        user.setEmail(registration.getEmail());
-        user.setPassword(passwordEncoder.encode(registration.getPassword()));
-        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
-        
+    public User save(User user){
         return userRepository.save(user);
     }
 

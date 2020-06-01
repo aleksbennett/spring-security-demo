@@ -1,9 +1,6 @@
 package com.security.demo.dto;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import com.security.demo.validation.FieldMatch;
 import com.security.demo.validation.ValidEmail;
