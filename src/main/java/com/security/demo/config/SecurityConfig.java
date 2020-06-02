@@ -46,6 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             .logoutSuccessUrl("/login?logout")
             .and()
+          .rememberMe()
+            .rememberMeParameter("remember-me-new")
+            .tokenValiditySeconds(604800) //1 week seconds
+            .and()
           .csrf().disable()
           //added for access to h2-console
           .headers().frameOptions().disable();
