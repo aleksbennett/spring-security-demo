@@ -20,7 +20,7 @@
                 </div>
 
                 <hr class="mb-4">
-                
+
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <div class="form-group">
@@ -34,6 +34,7 @@
                                     class="form-control" 
                                     th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}"
                                     placeholder="your@email.com" 
+                                    value="${user.email}"
                                     required>
                                 <div class="invalid-feedback"
                                     th:if="${#fields.hasErrors('email')}" 
@@ -52,6 +53,7 @@
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('confirmEmail') ? 'is-invalid':''}"                                
                                 placeholder="your@email.com" 
+                                value="${user.confirmEmail}"
                                 required>
                             <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('confirmEmail')}" 
@@ -68,7 +70,7 @@
                                 th:field="*{password}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('password') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.password}"
                                 required>
                             <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('password')}" 
@@ -82,7 +84,7 @@
                                 th:field="*{confirmPassword}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('confirmPassword') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.confirmPassword}"
                                 required>
                             <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('confirmPassword')}" 
@@ -100,7 +102,7 @@
                                 th:field="*{title}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('title') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.title}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('title')}" 
@@ -112,7 +114,7 @@
                                 th:field="*{firstName}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.firstName}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('firstName')}" 
@@ -124,7 +126,7 @@
                                 th:field="*{lastName}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.lastName}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('lastName')}" 
@@ -141,7 +143,7 @@
                                 th:field="*{postcode}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('postcode') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.postcode}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('postcode')}" 
@@ -153,7 +155,7 @@
                                 th:field="*{houseName}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('houseName') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.houseName}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('houseName')}" 
@@ -168,7 +170,7 @@
                                 th:field="*{street}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('street') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.street}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('street')}" 
@@ -180,7 +182,7 @@
                                 th:field="*{town}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('town') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.town}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('town')}" 
@@ -195,7 +197,7 @@
                                 th:field="*{county}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('county') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.county}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('county')}" 
@@ -207,7 +209,7 @@
                                 th:field="*{country}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('country') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.country}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('country')}" 
@@ -224,7 +226,7 @@
                                 th:field="*{companyRole}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('companyRole') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.companyRole}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('companyRole')}" 
@@ -236,11 +238,34 @@
                                 th:field="*{companyName}"
                                 class="form-control" 
                                 th:classappend="${#fields.hasErrors('companyName') ? 'is-invalid':''}"
-                                placeholder="" 
+                                value="${user.companyRole}"
                                 required>
                         <div class="invalid-feedback"
                                 th:if="${#fields.hasErrors('companyName')}" 
                                 th:errors="*{companyName}"></div>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4>Terms and conditions</h4>
+
+                        <p>Please review our full terms and conditions document <a th:href="@{/terms}" target="_blank">here</a>.</p>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <input type="checkbox" 
+                                th:field="*{terms}"
+                                class="form-check-input" 
+                                th:classappend="${#fields.hasErrors('terms') ? 'is-invalid':''}"
+                                placeholder="" 
+                                required>
+                        <label for="terms">I accept the terms and conditions detailed above.</label>
+                        
+                        <div class="invalid-feedback"
+                                th:if="${#fields.hasErrors('terms')}" 
+                                th:errors="*{terms}"></div>
                     </div>
                 </div>
 

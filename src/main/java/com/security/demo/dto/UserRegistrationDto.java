@@ -1,5 +1,6 @@
 package com.security.demo.dto;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 
 import com.security.demo.validation.FieldMatch;
@@ -34,7 +35,7 @@ public class UserRegistrationDto {
     private String email;
     private String confirmEmail;
 
-    //@AssertTrue
+    @AssertTrue(message = "You must accept the terms and conditions.")
     private Boolean terms;
 
     private String title;
